@@ -23,9 +23,9 @@ UTF-8 encoding
 maximum number of keywords you can specify in this array: 1000`),
       location_name: z.string().default("United States").describe(`full name of the location
 required field
-in format "Country"
+only in format "Country" (not "City" or "Region")
 example:
-United Kingdom`),
+'United Kingdom', 'United States', 'Canada'`),
       language_code: z.string().default("en").describe(
         `language code
         required field

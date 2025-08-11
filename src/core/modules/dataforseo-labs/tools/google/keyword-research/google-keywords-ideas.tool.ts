@@ -24,9 +24,9 @@ Along with each keyword idea, you will get its search volume rate for the last m
       keywords: z.array(z.string()).describe(`target keywords`),
       location_name: z.string().default("United States").describe(`full name of the location
   required field
-  in format "Country"
+  only in format "Country" (not "City" or "Region")
   example:
-  United Kingdom`),
+  'United Kingdom', 'United States', 'Canada'`),
       language_code: z.string().default("en").describe(
         `language code
         required field

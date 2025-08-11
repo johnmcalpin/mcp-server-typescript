@@ -27,9 +27,9 @@ note that if some of the keywords specified in this array are omitted in the res
 you will not be charged for the keywords omitted in the results`),
       location_name: z.string().default("United States").describe(`full name of the location
 required field
-in format "Country"
+only in format "Country" (not "City" or "Region")
 example:
-United Kingdom`),
+'United Kingdom', 'United States', 'Canada'`),
       language_code: z.string().default("en").describe(
         `language code
         required field

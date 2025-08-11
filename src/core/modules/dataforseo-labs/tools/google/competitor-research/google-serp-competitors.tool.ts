@@ -25,9 +25,9 @@ the keywords will be converted to lowercase format;
 you can specify the maximum of 200 keywords`),
       location_name: z.string().default("United States").describe(`full name of the location
 required field
-in format "Country"
+only in format "Country" (not "City" or "Region")
 example:
-United Kingdom`),
+'United Kingdom', 'United States', 'Canada'`),
       language_code: z.string().default("en").describe(
         `language code
         required field
