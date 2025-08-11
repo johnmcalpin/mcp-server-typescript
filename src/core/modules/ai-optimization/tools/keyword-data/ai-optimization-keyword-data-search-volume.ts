@@ -3,14 +3,14 @@ import { BaseTool, DataForSEOFullResponse } from '../../../base.tool.js';
 import { DataForSEOClient } from '../../../../client/dataforseo.client.js';
 import { ZodRawShape } from 'zod';
 
-export class AiKeywordDataSearchVolumeTool extends BaseTool {
+export class AiOptimizationKeywordDataSearchVolumeTool extends BaseTool {
 
   constructor(dataForSEOClient: DataForSEOClient) {
     super(dataForSEOClient);
   }
   
   getName(): string {
-      return "ai_keyword_data_search_volume";
+      return "ai_optimization_keyword_data_search_volume";
   }
 
   getDescription(): string {

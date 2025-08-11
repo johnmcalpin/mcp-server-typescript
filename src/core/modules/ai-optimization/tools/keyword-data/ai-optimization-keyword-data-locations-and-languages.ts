@@ -2,7 +2,7 @@ import { BaseTool, DataForSEOFullResponse } from '../../../base.tool.js';
 import { DataForSEOClient } from '../../../../client/dataforseo.client.js';
 import { ZodRawShape } from 'zod';
 
-export class AiKeywordDataLocationsAndLanguagesListTool extends BaseTool {
+export class AiOptimizationKeywordDataLocationsAndLanguagesListTool extends BaseTool {
 
   constructor(dataForSEOClient: DataForSEOClient) {
     super(dataForSEOClient);
