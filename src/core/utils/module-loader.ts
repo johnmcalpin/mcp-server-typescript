@@ -1,5 +1,6 @@
 import { DataForSEOClient } from '../client/dataforseo.client.js';
 import { SerpApiModule } from '../modules/serp/serp-api.module.js';
+import { AiOptimizationApiModule } from '../modules/ai-optimization/ai-optimization-api-module.js'
 import { KeywordsDataApiModule } from '../modules/keywords-data/keywords-data-api.module.js';
 import { OnPageApiModule } from '../modules/onpage/onpage-api.module.js';
 import { DataForSEOLabsApi } from '../modules/dataforseo-labs/dataforseo-labs-api.module.js';
@@ -14,6 +15,9 @@ export class ModuleLoaderService {
   static loadModules(dataForSEOClient: DataForSEOClient, enabledModules: EnabledModules): BaseModule[] {
     const modules: BaseModule[] = [];
 
+    if (isModuleEnabled('AI_OPTIMIZATION', enabledModules)) {
+      modules.push(new AiOptimizationApiModule(dataForSEOClient));
+    }
     if (isModuleEnabled('SERP', enabledModules)) {
       modules.push(new SerpApiModule(dataForSEOClient));
     }

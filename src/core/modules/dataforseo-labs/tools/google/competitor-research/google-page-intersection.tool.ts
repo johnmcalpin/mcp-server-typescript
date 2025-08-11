@@ -62,9 +62,9 @@ intersect – results are based on the keywords all URLs from pages rank for in 
 by default, results are based on the intersect mode if you specify only pages array. If you specify exclude_pages as well, results are based on the union mode`),
       location_name: z.string().default("United States").describe(`full name of the location
 required field
-in format "Country"
+only in format "Country" (not "City" or "Region")
 example:
-United Kingdom`),
+'United Kingdom', 'United States', 'Canada'`),
       language_code: z.string().default("en").describe(
         `language code
         required field

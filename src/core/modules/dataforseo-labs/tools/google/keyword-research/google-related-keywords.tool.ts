@@ -27,9 +27,9 @@ Search algorithm: depth-first search for queries appearing in the "search relate
       depth: z.number().min(0).max(4).default(1).describe(`keyword search depth`),
       location_name: z.string().default("United States").describe(`full name of the location
 required field
-in format "Country"
+only in format "Country" (not "City" or "Region")
 example:
-United Kingdom`),
+'United Kingdom', 'United States', 'Canada'`),
       language_code: z.string().default("en").describe(
         `language code
         required field

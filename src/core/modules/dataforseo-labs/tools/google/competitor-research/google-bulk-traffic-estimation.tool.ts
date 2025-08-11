@@ -24,9 +24,9 @@ pages should be specified with absolute URL, including https:// and www.;
 you can set up to 1000 domains, subdomains or webpages`),
       location_name: z.string().default("United States").describe(`full name of the location
 required field
-in format "Country"
+only in format "Country" (not "City" or "Region")
 example:
-United Kingdom`),
+'United Kingdom', 'United States', 'Canada'`),
       language_code: z.string().default("en").describe(
         `language code
         required field
