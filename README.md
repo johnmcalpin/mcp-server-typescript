@@ -203,6 +203,7 @@ After deployment, configure Claude to use your worker:
 
 The following modules are available to be enabled/disabled:
 
+- `AI_OPTIMIZATION`: provides data for keyword discovery, conversational optimization, and real-time LLM benchmarking;
 - `SERP`: real-time SERP data for Google, Bing, and Yahoo;
 - `KEYWORDS_DATA`: keyword research and clickstream data;
 - `ONPAGE`: crawl websites and webpages to obtain on-page SEO performance metrics;
@@ -217,6 +218,7 @@ The following modules are available to be enabled/disabled:
 ### Module Structure
 
 Each module corresponds to a specific DataForSEO API:
+- `AI_OPTIMIZATION`: [AI Optimization API](https://docs.dataforseo.com/v3/ai_optimization/overview)
 - `SERP` module → [SERP API](https://docs.dataforseo.com/v3/serp/overview)
 - `KEYWORDS_DATA` module → [Keywords Data API](https://docs.dataforseo.com/v3/keywords_data/overview)
 - `ONPAGE` module → [OnPage API](https://docs.dataforseo.com/v3/on_page/overview)
