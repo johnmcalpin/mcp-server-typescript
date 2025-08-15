@@ -4,6 +4,7 @@ Model Context Protocol (MCP) server implementation for DataForSEO, enabling AI a
 
 ## Features
 
+- **AI_OPTIMIZATION API**: provides data for keyword discovery, conversational optimization, and real-time LLM benchmarking; 
 - **SERP API**: real-time Search Engine Results Page (SERP) data for Google, Bing, and Yahoo;
 - **KEYWORDS_DATA API**: keyword research and clickstream data, including search volume, cost-per-click, and other metrics;   
 - **ONPAGE API**: allows crawling websites and webpages according to customizable parameters to obtain on-page SEO performance metrics; 
