@@ -39,7 +39,7 @@ export const businessDataPrompts: PromptDefinition[] = [
             role: 'user',
             content: {
               type: 'text',
-              text: `Get business listing details (name, website, phone, rating) for ${params.business_type} in ${params.location}`
+              text: `Get business listing details (name, website, phone, rating) for ${params.business_type} businesses in ${params.location}`
             }
           }
         ]
@@ -60,7 +60,7 @@ export const businessDataPrompts: PromptDefinition[] = [
             role: 'user',
             content: {
               type: 'text',
-              text: `List new ${params.business_type} that opened in ${params.location} in the past 30 days`
+              text: `List new ${params.business_type} businesses that opened in ${params.location} in the past 30 days`
             }
           }
         ]
@@ -81,7 +81,7 @@ export const businessDataPrompts: PromptDefinition[] = [
             role: 'user',
             content: {
               type: 'text',
-              text: `Compare review trends for top 5 ${params.business_type} in ${params.location} with their star ratings and total reviews.`
+              text: `Compare review trends for top 5 ${params.business_type} businesses in ${params.location} with their star ratings and total reviews.`
             }
           }
         ]

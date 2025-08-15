@@ -71,7 +71,7 @@ export const datalabsPrompts: PromptDefinition[] = [
     title: 'Keyword Cluster Related Keywords by Intent',
     params: {
       keyword: z.string().describe('The main keyword to cluster related keywords for'),
-      intents: z.string().describe('The intents must be: informational, navigational, transactional, commercial'),
+      intents: z.string().describe('informational, navigational, transactional, commercial'),
     },
     handler: async (params) => {
       return {
