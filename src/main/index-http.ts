@@ -18,6 +18,7 @@ import { GetPromptResult, isInitializeRequest, ReadResourceResult, ServerNotific
 import { name, version } from '../core/utils/version.js';
 import { ModuleLoaderService } from "../core/utils/module-loader.js";
 import { initializeFieldConfiguration } from '../core/config/field-configuration.js';
+import { initMcpServer } from "./init-mcp-server.js";
 
 // Initialize field configuration if provided
 initializeFieldConfiguration();
@@ -30,63 +31,6 @@ interface Request extends ExpressRequest {
 
 console.error('Starting DataForSEO MCP Server...');
 console.error(`Server name: ${name}, version: ${version}`);
-
-function getServer(username: string | undefined, password: string | undefined) : McpServer
-{
-  const server = new McpServer({
-    name,
-    version,
-  },{ capabilities: { logging: {}} });
-  // Initialize DataForSEO client
-  const dataForSEOConfig: DataForSEOConfig = {
-    username: username || "",
-    password: password || "",
-  };
-  
-  const dataForSEOClient = new DataForSEOClient(dataForSEOConfig);
-  console.error('DataForSEO client initialized');
-  
-  // Parse enabled modules from environment
-  const enabledModules = EnabledModulesSchema.parse(process.env.ENABLED_MODULES);
-  
-  // Initialize modules
-  const modules: BaseModule[] = ModuleLoaderService.loadModules(dataForSEOClient, enabledModules);
-  
-  console.error('Modules initialized');
-  function registerModules() {
-    console.error('Registering modules');
-    console.error(modules.length);
-    modules.forEach(module => {
-      
-      const tools = module.getTools();
-      Object.entries(tools).forEach(([name, tool]) => {
-        const typedTool = tool as ToolDefinition;
-        const schema = z.object(typedTool.params);
-        server.tool(
-          name,
-          typedTool.description,
-          schema.shape,
-          typedTool.handler
-        );
-      });
-
-      const prompts = module.getPrompts();
-      Object.entries(prompts).forEach(([name, prompt]) => {
-        server.registerPrompt(
-          name,
-          {
-            description: prompt.description,
-            argsSchema: prompt.params,
-          },
-          prompt.handler
-        );
-      });
-    });
-  }
-  registerModules();
-  console.error('Modules registered');
-  return server;
-}
 
 function getSessionId() {
   return randomUUID().toString();
@@ -159,7 +103,7 @@ async function main() {
         req.password = envPassword;
       }
       
-      const server = getServer(req.username, req.password); 
+      const server = initMcpServer(req.username, req.password); 
       console.error(Date.now().toLocaleString())
 
       const transport: StreamableHTTPServerTransport = new StreamableHTTPServerTransport({

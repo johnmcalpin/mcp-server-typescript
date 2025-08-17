@@ -8,66 +8,14 @@ import { z } from 'zod';
 import { ModuleLoaderService } from "../core/utils/module-loader.js";
 import { initializeFieldConfiguration } from '../core/config/field-configuration.js';
 import { name, version } from '../core/utils/version.js';
+import { initMcpServer } from "./init-mcp-server.js";
 
 // Initialize field configuration if provided
 initializeFieldConfiguration();
 console.error('Starting DataForSEO MCP Server...');
 console.error(`Server name: ${name}, version: ${version}`);
-// Create server instance
-const server = new McpServer({
-    name,
-    version,
-});
 
-// Initialize DataForSEO client
-const dataForSEOConfig: DataForSEOConfig = {
-  username: process.env.DATAFORSEO_USERNAME || "",
-  password: process.env.DATAFORSEO_PASSWORD || "",
-};
-
-const dataForSEOClient = new DataForSEOClient(dataForSEOConfig);
-console.error('DataForSEO client initialized');
-
-// Parse enabled modules from environment
-const enabledModules = EnabledModulesSchema.parse(process.env.ENABLED_MODULES);
-
-// Initialize modules
-const modules: BaseModule[] = ModuleLoaderService.loadModules(dataForSEOClient, enabledModules);
-console.error('Modules initialized');
-
-// Register modules
-function registerModules() {
-  modules.forEach(module => {
-    
-    const tools = module.getTools();
-    Object.entries(tools).forEach(([name, tool]) => {
-      const typedTool = tool as ToolDefinition;
-      const schema = z.object(typedTool.params);
-      server.tool(
-        name,
-        typedTool.description,
-        schema.shape,
-        typedTool.handler
-      );
-    });
-
-    const prompts = module.getPrompts();
-    Object.entries(prompts).forEach(([name, prompt]) => {
-      server.registerPrompt(
-        name,
-        {
-          description: prompt.description,
-          argsSchema: prompt.params,
-        },
-        prompt.handler
-      );
-    });
-  });
-}
-
-// Register all modules
-registerModules();
-console.error('Modules registered');
+const server = initMcpServer(process.env.DATAFORSEO_USERNAME, process.env.DATAFORSEO_PASSWORD);
 
 // Start the server
 async function main() {
