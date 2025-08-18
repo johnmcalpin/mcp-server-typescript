@@ -51,7 +51,6 @@ export function initMcpServer(username: string | undefined, password: string | u
         ? prompts
         : Object.fromEntries(Object.entries(prompts).filter(([promptName]) => enabledPrompts.includes(promptName)));
 
-    console.log("Allowed Prompts:", Object.keys(allowedPrompts));
     Object.entries(allowedPrompts).forEach(([name, prompt]) => {
       server.registerPrompt(
         name,
