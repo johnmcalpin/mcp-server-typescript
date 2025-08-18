@@ -28,6 +28,7 @@ export function initMcpServer(username: string | undefined, password: string | u
   // Initialize modules
   const modules: BaseModule[] = ModuleLoaderService.loadModules(dataForSEOClient, enabledModules);
   
+  const enabledPrompts = process.env.ENABLED_PROMPTS?.split(',').map(name => name.trim()) || [];
 
   // Register modules
   modules.forEach(module => {
@@ -45,7 +46,13 @@ export function initMcpServer(username: string | undefined, password: string | u
     });
 
     const prompts = module.getPrompts();
-    Object.entries(prompts).forEach(([name, prompt]) => {
+    // Filter prompts based on enabledPrompts configuration
+    const allowedPrompts = enabledPrompts.length === 0
+        ? prompts
+        : Object.fromEntries(Object.entries(prompts).filter(([promptName]) => enabledPrompts.includes(promptName)));
+
+    console.log("Allowed Prompts:", Object.keys(allowedPrompts));
+    Object.entries(allowedPrompts).forEach(([name, prompt]) => {
       server.registerPrompt(
         name,
         {

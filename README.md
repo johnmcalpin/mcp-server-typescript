@@ -41,6 +41,10 @@ export DATAFORSEO_PASSWORD=your_password
 # If not set, all modules will be enabled
 export ENABLED_MODULES="SERP,KEYWORDS_DATA,ONPAGE,DATAFORSEO_LABS,BACKLINKS,BUSINESS_DATA,DOMAIN_ANALYTICS"
 
+# Optional: specify which prompts in enabled modules are enable too (prompts names, comma-separated)
+# If not set, all prompts from enabled modules will be enabled
+export ENABLED_PROMPTS="top_3_google_result_domains,top_5_serp_paid_and_organic"
+
 # Optional: enable full API responses
 # If not set or set to false, the server will filter and transform API responses to a more concise format
 # If set to true, the server will return the full, unmodified API responses
@@ -156,6 +160,7 @@ The worker uses the same environment variables as the standard server:
 - `DATAFORSEO_USERNAME`: Your DataForSEO username
 - `DATAFORSEO_PASSWORD`: Your DataForSEO password  
 - `ENABLED_MODULES`: Comma-separated list of modules to enable
+- `ENABLED_PROMPTS`: Comma-separated list of prompt names to enable 
 - `DATAFORSEO_FULL_RESPONSE`: Set to "true" for full API responses
 
 ### Worker Endpoints
@@ -179,7 +184,8 @@ Edit `wrangler.jsonc` to customize your deployment:
   "compatibility_date": "2025-07-10",
   "compatibility_flags": ["nodejs_compat"],
   "vars": {
-    "ENABLED_MODULES": "SERP,KEYWORDS_DATA,ONPAGE,DATAFORSEO_LABS"
+    "ENABLED_MODULES": "SERP,KEYWORDS_DATA,ONPAGE,DATAFORSEO_LABS",
+    "ENABLED_PROMPTS":"top_3_google_result_domains,top_5_serp_paid_and_organic"
   }
 }
 ```
