@@ -16,7 +16,7 @@ export const onpagePrompts: PromptDefinition[] = [
             role: 'user',
             content: {
               type: 'text',
-              text: `Audit page '${params.url}' for crawlability issues, including robots.txt restrictions, noindex tags, and broken internal links. Highlight what’s preventing Google from indexing or ranking this page.`
+              text: `Audit page '${params.url}' for crawlability issues, including robots.txt restrictions, noindex tags, and broken internal links. Highlight what's preventing Google from indexing or ranking this page.`
             }
           }
         ]
@@ -56,7 +56,7 @@ export const onpagePrompts: PromptDefinition[] = [
             role: 'user',
             content: {
               type: 'text',
-              text: `Analyze page '${params.url}' for speed and mobile usability. Use load_resources, enable_javascript, and enable_browser_rendering. Tell me what’s slowing it down or making it hard to use on mobile, include the measurements, and give practical steps to improve performance.`
+              text: `Analyze page '${params.url}' for speed and mobile usability. Use load_resources, enable_javascript, and enable_browser_rendering. Tell me what's slowing it down or making it hard to use on mobile, include the measurements, and give practical steps to improve performance.`
             }
           }
         ]
@@ -76,7 +76,7 @@ export const onpagePrompts: PromptDefinition[] = [
             role: 'user',
             content: {
               type: 'text',
-              text: `Check how well '${params.url}' is connected internally. Use load_resources, enable_javascript, and enable_browser_rendering. Tell me if it’s buried too deep in the site structure or lacks internal links that could help search engines find and rank it. Include the data for each issue or metric.`
+              text: `Check how well '${params.url}' is connected internally. Use load_resources, enable_javascript, and enable_browser_rendering. Tell me if it's buried too deep in the site structure or lacks internal links that could help search engines find and rank it. Include the data for each issue or metric.`
             }
           }
         ]
@@ -97,7 +97,7 @@ export const onpagePrompts: PromptDefinition[] = [
             role: 'user',
             content: {
               type: 'text',
-              text: `Evaluate '${params.url}' for how well it’s optimized for the keyword '${params.keyword}'. Analyze on-page SEO elements like title, meta description, headings (H1-H6), internal links, and keyword usage, extract and parse all content elements (headings, paragraphs, alt attributes, etc.), and check for keyword placement and semantic relevance. Identify missing keyword placements and content gaps that could affect its relevance and ranking.`
+              text: `Evaluate '${params.url}' for how well it's optimized for the keyword '${params.keyword}'. Analyze on-page SEO elements like title, meta description, headings (H1-H6), internal links, and keyword usage, extract and parse all content elements (headings, paragraphs, alt attributes, etc.), and check for keyword placement and semantic relevance. Identify missing keyword placements and content gaps that could affect its relevance and ranking.`
             }
           }
         ]

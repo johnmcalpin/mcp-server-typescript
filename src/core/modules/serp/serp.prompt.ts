@@ -63,7 +63,7 @@ export const serpPrompts: PromptDefinition[] = [
             role: 'user',
             content: {
               type: 'text',
-              text: `Generate a domain visibility snapshot for '${params.domain}' in '${params.location}' in '${params.language}' using google_domain_rank_overview. List the estimated organic traffic, percentage of top 10 rankings, and SERP position breakdown for this week. Compare to last month’s values using google_historical_rank_overview.`
+              text: `Generate a domain visibility snapshot for '${params.domain}' in '${params.location}' in '${params.language}' using google_domain_rank_overview. List the estimated organic traffic, percentage of top 10 rankings, and SERP position breakdown for this week. Compare to last month's values using google_historical_rank_overview.`
             }
           }
         ]
