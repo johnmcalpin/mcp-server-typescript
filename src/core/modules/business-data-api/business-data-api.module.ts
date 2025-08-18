@@ -1,4 +1,5 @@
 import { BaseModule, ToolDefinition } from '../base.module.js';
+import { PromptDefinition } from '../prompt-definition.js';
 import { BusinessDataBusinessListingsSearchTool } from './tools/listings/business-listings-search.tool.js';
 
 export class BusinessDataApiModule extends BaseModule {
@@ -17,4 +18,8 @@ export class BusinessDataApiModule extends BaseModule {
       },
     }), {});
   }
+
+    getPrompts(): Record<string, PromptDefinition> {
+      return {}
+    }
 } 

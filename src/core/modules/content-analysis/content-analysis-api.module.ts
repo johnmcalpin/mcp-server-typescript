@@ -1,4 +1,5 @@
 import { BaseModule, ToolDefinition } from '../base.module.js';
+import { PromptDefinition } from '../prompt-definition.js';
 import { ContentAnalysisPhraseTrendsTool } from './tools/content-analysis-phrase-trends.js';
 import { ContentAnalysisSearchTool } from './tools/content-analysis-search.tool.js';
 import { ContentAnalysisSummaryTool } from './tools/content-analysis-summary.js';
@@ -20,5 +21,9 @@ export class ContentAnalysisApiModule extends BaseModule {
         handler: (params: any) => tool.handle(params),
       },
     }), {});
+  }
+
+  getPrompts(): Record<string, PromptDefinition> {
+    return {}
   }
 } 
