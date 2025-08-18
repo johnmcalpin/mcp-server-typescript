@@ -1,4 +1,5 @@
 import { BaseModule, ToolDefinition } from '../base.module.js';
+import { PromptDefinition } from '../prompt-definition.js';
 import { DomainTechnologiesTool } from './tools/technologies/domain-technologies.tool.js';
 import { DomainTechnologiesFiltersTool } from './tools/technologies/domain-technologies-filters.tool.js';
 import { WhoisFiltersTool } from './tools/whois/whois-filters.tool.js';
@@ -22,5 +23,9 @@ export class DomainAnalyticsApiModule extends BaseModule {
         handler: (params: any) => tool.handle(params),
       },
     }), {});
+  }
+
+  getPrompts(): Record<string, PromptDefinition> {
+    return {};
   }
 } 
