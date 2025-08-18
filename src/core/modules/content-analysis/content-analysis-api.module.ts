@@ -1,6 +1,5 @@
 import { BaseModule, ToolDefinition } from '../base.module.js';
 import { PromptDefinition } from '../prompt-definition.js';
-import { contentAnalysisPrompts } from './content-analysis.prompt.js';
 import { ContentAnalysisPhraseTrendsTool } from './tools/content-analysis-phrase-trends.js';
 import { ContentAnalysisSearchTool } from './tools/content-analysis-search.tool.js';
 import { ContentAnalysisSummaryTool } from './tools/content-analysis-summary.js';
@@ -25,16 +24,6 @@ export class ContentAnalysisApiModule extends BaseModule {
   }
 
   getPrompts(): Record<string, PromptDefinition> {
-    return contentAnalysisPrompts.reduce((acc, prompt) => ({
-      ...acc,
-      [prompt.name]: {
-        description: prompt.description,
-        params: prompt.params,
-        handler: (params: any) => {
-
-          return prompt.handler(params);
-        },
-      },
-    }), {});
+    return {}
   }
 } 

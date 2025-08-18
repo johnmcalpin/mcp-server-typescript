@@ -4,10 +4,10 @@ import { PromptDefinition } from '../prompt-definition.js';
 
 export const onpagePrompts: PromptDefinition[] = [
   {
-    name: 'site_audit',
-    title: 'On-page SEO audit of site',
+    name: 'identify_technical_performance_issues_affecting_crawlability_and_ranking',
+    title: 'Identify technical performance issues affecting crawlability and ranking',
     params: {
-        site: z.string().describe('The site to analyze')
+      url: z.string().describe('The URL of the page to analyze'),
     },
     handler: async (params) => {
       return {
@@ -16,7 +16,7 @@ export const onpagePrompts: PromptDefinition[] = [
             role: 'user',
             content: {
               type: 'text',
-              text: `Run a full on-page SEO audit for ${params.site} and summarize meta tag issues, missing headings, and performance warnings`
+              text: `Audit page '${params.url}' for crawlability issues, including robots.txt restrictions, noindex tags, and broken internal links. Highlight what’s preventing Google from indexing or ranking this page.`
             }
           }
         ]
@@ -24,10 +24,10 @@ export const onpagePrompts: PromptDefinition[] = [
     }
   },
   {
-    name: 'site_broken_links',
-    title: 'Search Internal and External Broken Links',
+    name: 'detect_missing_or_duplicate_meta_tags_hurting_seo',
+    title: 'Detect missing or duplicate meta tags hurting SEO',
     params: {
-        site: z.string().describe('The site to analyze')
+      url: z.string().describe('The URL of the page to analyze'),
     },
     handler: async (params) => {
       return {
@@ -36,7 +36,7 @@ export const onpagePrompts: PromptDefinition[] = [
             role: 'user',
             content: {
               type: 'text',
-              text: `Find all internal and external broken links on ${params.site}/about-us`
+              text: `Review page '${params.url}' to check for missing or duplicate meta title and meta description tags, use validate_micromarkup, enable_javascript, and enable_browser_rendering. Let me know if the tags are too long, too short, or missing, and how to fix them.`
             }
           }
         ]
@@ -44,11 +44,10 @@ export const onpagePrompts: PromptDefinition[] = [
     }
   },
   {
-    name: 'site_structured_data',
-    title: 'Search Structured Data Types',
-    description: '',
+    name: 'check_for_slow_load_time_and_mobile_compatibility_issues',
+    title: 'Check for slow load time and mobile compatibility issues',
     params: {
-        site: z.string().describe('The site to analyze')
+      url: z.string().describe('The URL of the page to analyze'),
     },
     handler: async (params) => {
       return {
@@ -57,7 +56,7 @@ export const onpagePrompts: PromptDefinition[] = [
             role: 'user',
             content: {
               type: 'text',
-              text: `What structured data types are implemented on ${params.site}/our-data`
+              text: `Analyze page '${params.url}' for speed and mobile usability. Use load_resources, enable_javascript, and enable_browser_rendering. Tell me what’s slowing it down or making it hard to use on mobile, include the measurements, and give practical steps to improve performance.`
             }
           }
         ]
@@ -65,11 +64,10 @@ export const onpagePrompts: PromptDefinition[] = [
     }
   },
   {
-    name: 'site_mobile_usability',
-    title: 'Evaluate Mobile Usability and Core Web Vitals',
-    description: '',
+    name: 'evaluate_internal_linking_and_crawl_depth_for_better_indexing',
+    title: 'Evaluate internal linking and crawl depth for better indexing',
     params: {
-        site: z.string().describe('The site to analyze')
+      url: z.string().describe('The URL of the page to analyze'),
     },
     handler: async (params) => {
       return {
@@ -78,7 +76,7 @@ export const onpagePrompts: PromptDefinition[] = [
             role: 'user',
             content: {
               type: 'text',
-              text: `Evaluate the mobile usability and Core Web Vitals for ${params.site}`
+              text: `Check how well '${params.url}' is connected internally. Use load_resources, enable_javascript, and enable_browser_rendering. Tell me if it’s buried too deep in the site structure or lacks internal links that could help search engines find and rank it. Include the data for each issue or metric.`
             }
           }
         ]
@@ -86,11 +84,11 @@ export const onpagePrompts: PromptDefinition[] = [
     }
   },
   {
-    name: 'site_mobile_usability',
-    title: 'Evaluate Mobile Usability and Core Web Vitals',
-    description: '',
+    name: 'analyze_keyword_optimization_and_content_gaps',
+    title: 'Analyze keyword optimization and content gaps',
     params: {
-        site: z.string().describe('The site to analyze')
+      url: z.string().describe('The URL of the page to analyze'),
+      keyword: z.string().describe('The primary keyword to optimize for'),
     },
     handler: async (params) => {
       return {
@@ -99,7 +97,7 @@ export const onpagePrompts: PromptDefinition[] = [
             role: 'user',
             content: {
               type: 'text',
-              text: `Summarize the SEO performance of ${params.site} including traffic-driving keywords, backlink strength, and top-performing pages`
+              text: `Evaluate '${params.url}' for how well it’s optimized for the keyword '${params.keyword}'. Analyze on-page SEO elements like title, meta description, headings (H1-H6), internal links, and keyword usage, extract and parse all content elements (headings, paragraphs, alt attributes, etc.), and check for keyword placement and semantic relevance. Identify missing keyword placements and content gaps that could affect its relevance and ranking.`
             }
           }
         ]

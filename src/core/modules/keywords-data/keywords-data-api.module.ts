@@ -1,6 +1,5 @@
 import { BaseModule, ToolDefinition } from '../base.module.js';
 import { PromptDefinition } from '../prompt-definition.js';
-import { keywordsDataPrompts } from './keywords-data.prompts.js';
 import { DataForSeoTrendsDemographyTool } from './tools/dataforseo-trends/dataforseo-trends-demography.tool.js';
 import { DataForSeoTrendsExploreTool } from './tools/dataforseo-trends/dataforseo-trends-explore.tool.js';
 import { DataForSeoTrendsSubregionInterestsTool } from './tools/dataforseo-trends/dataforseo-trends-subregion-interests.tool.js';
@@ -33,16 +32,6 @@ export class KeywordsDataApiModule extends BaseModule {
   }
 
   getPrompts(): Record<string, PromptDefinition> {
-    return keywordsDataPrompts.reduce((acc, prompt) => ({
-      ...acc,
-      [prompt.name]: {
-        description: prompt.description,
-        params: prompt.params,
-        handler: (params: any) => {
-
-          return prompt.handler(params);
-        },
-      },
-    }), {});
+    return {};
   }
 } 

@@ -4,10 +4,10 @@ import { PromptDefinition } from '../prompt-definition.js';
 
 export const backlinksPrompts: PromptDefinition[] = [
   {
-    name: 'reffering_domains',
-    title: 'Backlinks Referring Domains',
+    name: 'discover_your_strongest_backlinks_for_authority_building',
+    title: 'Discover your strongest backlinks for authority building.',
     params: {
-        site: z.string().describe('The site to find referring domains for'),
+        domain: z.string().describe('The domain to find for'),
     },
     handler: async (params) => {
       return {
@@ -16,7 +16,7 @@ export const backlinksPrompts: PromptDefinition[] = [
             role: 'user',
             content: {
               type: 'text',
-              text: `Show the top 20 referring domains linking to ${params.site}, sorted by domain authority.`
+              text: `Identify the top 10 highest-authority backlinks to '${params.domain}', grouped by referring domain. Include backlink type, anchor text, and target page.`
             }
           }
         ]
@@ -24,84 +24,87 @@ export const backlinksPrompts: PromptDefinition[] = [
     }
   },
   {
-    name: 'anchors',
-    title: 'Backlinks Anchors Text',
+    name: 'see_which_blog_content_earns_you_the_most_backlinks',
+    title: 'See which blog content earns you the most backlinks.',
     params: {
-        site: z.string().describe('The site to find anchor texts for'),
+      domain: z.string().describe('The domain to analyze'),
     },
     handler: async (params) => {
       return {
         messages: [
           {
             role: 'user',
-            content: {
+            content:{
               type: 'text',
-              text: `List all anchor texts used in backlinks pointing to ${params.site} and how often each appears.`
+              text: `Show me which blog posts on '${params.domain}' attract the most backlinks. List the top 5 by backlink count, and include title, referring domains, and anchor types.`
             }
           }
         ]
-      };
+      }
     }
   },
   {
-    name: 'backlinks_profiles_comparison',
-    title: 'Backlinks Compare 2 domains',
+    name: 'find_new_link_opportunities_from_competitor_backlinks',
+    title: 'Find new link opportunities from competitor backlinks.',
     params: {
-        site1: z.string().describe('The first site to compare'),
-        site2: z.string().describe('The second site to compare'),
+      my_domain: z.string().describe('Your domain to compare against competitors'),
+      competitor_1: z.string().describe('First competitor domain'),
+      competitor_2: z.string().describe('Second competitor domain'),
     },
     handler: async (params) => {
       return {
         messages: [
           {
             role: 'user',
-            content: {
+            content:{
               type: 'text',
-              text: `Compare the backlink profiles of ${params.site1} and ${params.site2} in terms of unique referring domains and total links`
+              text: `Which websites link to my competitors but not to '${params.my_domain}'? Use '${params.competitor_1}' and '${params.competitor_2}'. Return 15 domains I should target for outreach.`
             }
           }
         ]
-      };
+      }
     }
   },
   {
-    name: 'new_discovered_backlinks',
-    title: 'New Backlinks Discovered For Site',
+    name: 'locate_broken_or_redirected_pages_that_waste_valuble_links',
+    title: 'Locate broken or redirected pages that waste valuable links.',
     params: {
-        site: z.string().describe('The site to find new backlinks for'),
+      domain: z.string().describe('The domain to analyze'),
+      backlinks_count: z.number().default(30).describe('Minimum number of backlinks to consider a page valuable'),
     },
     handler: async (params) => {
       return {
         messages: [
           {
             role: 'user',
-            content: {
+            content:{
               type: 'text',
-              text: `Find all new backlinks discovered in the last 30 days for ${params.site}.`
+              text: `Find internal pages on '${params.domain}' that have over ${params.backlinks_count} backlinks but are 404 or redirected. Return URL, status code, backlink count, and top referring domains.`
             }
           }
         ]
-      };
+      }
     }
   },
   {
-    name: 'broken_backlinks',
-    title: 'Broken Backlinks For Site',
+    name: 'benchmark_backlink_gaps_between_you_and_a_competitor',
+    title: 'Benchmark backlink gaps between you and a competitor.',
     params: {
-        site: z.string().describe('The site to find broken backlinks for'),
+      my_domain: z.string().describe('Your domain to compare against a competitor'),
+      competitor: z.string().describe('Competitor domain to analyze'),
     },
     handler: async (params) => {
       return {
         messages: [
           {
             role: 'user',
-            content: {
+            content:{
               type: 'text',
-              text: `Get a list of broken backlinks pointing to ${params.site} so I can reclaim link equity`
+              text: `Compare backlinks between '${params.my_domain}' and competitor '${params.competitor}'. Show 10 domains linking only to the competitor domain. Include domain authority and link count.`
             }
           }
         ]
-      };
+      }
     }
-  },
+  }
 ]

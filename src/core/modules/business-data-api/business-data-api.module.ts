@@ -1,6 +1,5 @@
 import { BaseModule, ToolDefinition } from '../base.module.js';
 import { PromptDefinition } from '../prompt-definition.js';
-import { businessDataPrompts } from './business-data.prompt.js';
 import { BusinessDataBusinessListingsSearchTool } from './tools/listings/business-listings-search.tool.js';
 
 export class BusinessDataApiModule extends BaseModule {
@@ -21,16 +20,6 @@ export class BusinessDataApiModule extends BaseModule {
   }
 
     getPrompts(): Record<string, PromptDefinition> {
-      return businessDataPrompts.reduce((acc, prompt) => ({
-        ...acc,
-        [prompt.name]: {
-          description: prompt.description,
-          params: prompt.params,
-          handler: (params: any) => {
-
-            return prompt.handler(params);
-          },
-        },
-      }), {});
+      return {}
     }
 } 
