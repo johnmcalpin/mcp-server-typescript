@@ -50,6 +50,11 @@ export ENABLED_PROMPTS="top_3_google_result_domains,top_5_serp_paid_and_organic"
 # If not set or set to false, the server will filter and transform API responses to a more concise format
 # If set to true, the server will return the full, unmodified API responses
 export DATAFORSEO_FULL_RESPONSE="false"
+
+# Optional: enable simple filter schema
+# If set to true, a simplified version of the filters schema will be used.
+# This is required for ChatGPT APIs or other LLMs that cannot handle nested structures.
+export DATAFORSEO_SIMPLE_FILTER="false"
 ```
 
 ## Installation as an NPM Package
@@ -116,6 +121,9 @@ npm run http
    ```bash
    export DATAFORSEO_USERNAME=your_username
    export DATAFORSEO_PASSWORD=your_password
+   # Optional
+   export DATAFORSEO_SIMPLE_FILTER="false"
+   export DATAFORSEO_FULL_RESPONSE="true"
    ```
 
 ## Cloudflare Worker Deployment
