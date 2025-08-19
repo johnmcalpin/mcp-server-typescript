@@ -9,6 +9,7 @@ export class OnPageApiModule extends BaseModule {
     const tools = [
       new ContentParsingTool(this.dataForSEOClient),
       new InstantPagesTool(this.dataForSEOClient),
+      new LighthouseTool(this.dataForSEOClient),
       // Add more tools here
     ];
 
