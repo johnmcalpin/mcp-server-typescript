@@ -27,13 +27,7 @@ export class LighthouseTool extends BaseTool {
     };
   }
 
-  async handle(params: { 
-    url: string; 
-    enable_javascript?: boolean; 
-    custom_js?: string; 
-    custom_user_agent?: string; 
-    accept_language?: string; 
-  }): Promise<any> {
+  async handle(params: any): Promise<any> {
     try {
         const response = await this.dataForSEOClient.makeRequest('/v3/on_page/lighthouse/live/json', 'POST', [{
           url: params.url,
