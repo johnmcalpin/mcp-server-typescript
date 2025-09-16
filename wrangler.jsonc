@@ -1,25 +1,22 @@
 {
-  // Tell editors / Wrangler what to validate against
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "dataforseo-mcp-worker",
-  "main": "build/worker/worker/index-worker.js",
+  "name": "data-for-seo",  // ← Changed to match your Cloudflare worker
+  "main": "build/index-worker.js",  // ← Simplified path
   "compatibility_date": "2025-07-05",
   "compatibility_flags": ["nodejs_compat"],
   "minify": true,
-  	"durable_objects": {
-		"bindings": [
-			{
-				"class_name": "DataForSEOMcpAgent",
-				"name": "MCP_OBJECT"
-			}
-		]
-	},
-  	"migrations": [
-		{
-			"new_sqlite_classes": [
-				"DataForSEOMcpAgent"
-			],
-			"tag": "v1"
-		}
-	],
+  "durable_objects": {
+    "bindings": [
+      {
+        "class_name": "DataForSEOMcpAgent",
+        "name": "MCP_OBJECT"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "new_sqlite_classes": ["DataForSEOMcpAgent"],
+      "tag": "v1"
+    }
+  ]
 }
